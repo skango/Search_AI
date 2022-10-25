@@ -19,8 +19,8 @@ from nltk.tokenize import word_tokenize
 #
 # testfunction()
 
-nltk.download('punkt')
-nltk.download('stopwords')
+#nltk.download('punkt')
+#nltk.download('stopwords')
 stemmer = PorterStemmer()
 
 # Clean text and leave only useful Keywords -- https://monkeylearn.com/topic-analysis/
@@ -41,6 +41,36 @@ def process_text(text):
     # Remember, this final output is a list of words
     return clean_text
 
-print(process_text(input("Enter Text: ")))
+def CountWords(x):
+    Words = []
+    Count = []
+    for i, v in enumerate(x):
+        Words.append(v)
+        matchcount = 0
+        for j in x:
+            if (v == j):
+                matchcount += 1
+            else:
+                pass
+                #print("No Match")
 
+        Count.append(matchcount)
+
+    #print(Words)
+    #print(Count)
+
+    #print(sorted(Count, reverse=True))
+    IndexSort = sorted(range(len(Count)), key=lambda k: Count[k],reverse=True)
+    WordsSortedByCriteria = []
+    for i, v in enumerate(IndexSort):
+        print(Words[IndexSort[i]], "Gameorda ", Count[IndexSort[i]])
+        if (Words[IndexSort[i]] in WordsSortedByCriteria):
+            pass
+        else:
+            WordsSortedByCriteria.append(Words[IndexSort[i]])
+
+    return WordsSortedByCriteria
+
+#print(process_text(input("Enter Text: ")))
+print(CountWords(process_text(input("Enter Text: "))))
 #Get most important topics: https://www.toptal.com/python/topic-modeling-python
