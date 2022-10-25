@@ -71,6 +71,7 @@ def CountWords(x):
 
     return WordsSortedByCriteria
 
-#print(process_text(input("Enter Text: ")))
-print(CountWords(process_text(input("Enter Text: "))))
+Text = input("Enter Text: ")
+print(CountWords(process_text(Text)))
+print(process_text(Text))
 #Get most important topics: https://www.toptal.com/python/topic-modeling-python
