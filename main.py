@@ -41,6 +41,18 @@ def process_text(text):
     # Remember, this final output is a list of words
     return clean_text
 
+def getWordArray(text):
+    # Make all the strings lowercase and remove non alphabetic characters
+    text = re.sub('[^A-Za-z]', ' ', text.lower())
+
+    # Tokenize the text; this is, separate every sentence into a list of words
+    # Since the text is already split into sentences you don't have to call sent_tokenize
+    tokenized_text = word_tokenize(text)
+    return tokenized_text
+
+def getWordArrayWithDots(text):
+    return text.split()
+
 def CountWords(x):
     Words = []
     Count = []
@@ -69,7 +81,44 @@ def CountWords(x):
 
     return WordsSortedByCriteria
 
+def AnalyzeWhatIsWhat(x):
+    for i,v in enumerate(x):
+        if (v == "is"):
+            if (x[i + 1] == "a" or x[i + 1] == "the"):
+                print(x[i - 1], " is", x[i + 2])
+            else:
+                print(x[i - 1], " is", x[i + 1])
+
+def AnalyzeWhatIsWhat2(x):
+    WritingSentence = False
+    sentence = []
+    for i,v in enumerate(x):
+        if (v == "is"):
+            WritingSentence = True
+            sentence.append(x[i - 1])
+            sentence.append(" is ")
+            continue
+        if ("." in v and WritingSentence):
+            sentence.append(x[i])
+            WritingSentence = False
+            sentencetosay = ""
+            for i in sentence:
+                sentencetosay += " "
+                sentencetosay += i
+
+            print(sentencetosay)
+            sentence.clear()
+            continue
+        if (WritingSentence):
+            sentence.append(x[i])
+
+
+
+
+
 Text = input("Enter Text: ")
 print(CountWords(process_text(Text)))
 print(process_text(Text))
+AnalyzeWhatIsWhat2(getWordArrayWithDots(Text))
+#print(ReverseQuestion(getWordArrayWithDots(Text)))
 #Get most important topics: https://www.toptal.com/python/topic-modeling-python
