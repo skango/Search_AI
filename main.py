@@ -64,9 +64,7 @@ def CountWords(x):
     WordsSortedByCriteria = []
     for i, v in enumerate(IndexSort):
         print(Words[IndexSort[i]], "Gameorda ", Count[IndexSort[i]])
-        if (Words[IndexSort[i]] in WordsSortedByCriteria):
-            pass
-        else:
+        if (Words[IndexSort[i]] not in WordsSortedByCriteria):
             WordsSortedByCriteria.append(Words[IndexSort[i]])
 
     return WordsSortedByCriteria
