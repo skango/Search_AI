@@ -1,6 +1,6 @@
-import selenium
-from bs4 import BeautifulSoup
-import requests
+# import selenium
+# from bs4 import BeautifulSoup
+# import requests
 import re
 import nltk
 import tkinter
@@ -8,10 +8,10 @@ from tkinter import simpledialog
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from nltk.tokenize import word_tokenize
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import classification_report
+# from sklearn.feature_extraction.text import CountVectorizer
+# from sklearn.model_selection import train_test_split
+# from sklearn.naive_bayes import GaussianNB
+# from sklearn.metrics import classification_report
 import Scraper
 #from gensim import corpora
 #from gensim import models
@@ -146,7 +146,10 @@ print("===========================================")
 print("===========================================")
 print("===========================================")
 
-Scraper.GoogleSearch(WordsSortyedByCount[0] + " " + WordsSorted[0])
+if (WordsSortyedByCount[0] != WordsSorted[0]):
+    Scraper.GoogleSearch(WordsSortyedByCount[0] + " " + WordsSorted[0])
+else:
+    Scraper.GoogleSearch(WordsSortyedByCount[0] + " " + WordsSortyedByCount[1])
 
 # matrix = CountVectorizer(max_features=1000)
 # vectors = matrix.fit_transform(process_text(Text)).toarray()
