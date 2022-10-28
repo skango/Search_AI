@@ -12,6 +12,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import classification_report
+import Scraper
 #from gensim import corpora
 #from gensim import models
 
@@ -132,8 +133,11 @@ if (len(Text) < 500):
     print("\nYou must enter at least 500 Characters! You entered: ", len(Text), "/", " 500")
     exit(-1)
 
-print(CountWords(process_text(Text)))
-print(process_text(Text))
+WordsSortyedByCount = CountWords(process_text(Text))
+
+print(WordsSortyedByCount)
+WordsSorted = process_text(Text)
+print(WordsSorted)
 AnalyzeWhatIsWhat2(getWordArrayWithDots(Text))
 
 print("===========================================")
@@ -141,6 +145,9 @@ print("===========================================")
 print("===========================================")
 print("===========================================")
 print("===========================================")
+
+Scraper.GoogleSearch(WordsSortyedByCount[0] + " " + WordsSorted[0])
+
 # matrix = CountVectorizer(max_features=1000)
 # vectors = matrix.fit_transform(process_text(Text)).toarray()
 # vectors_train, vectors_test, topics_train, topics_test = train_test_split(vectors, getWordArray(Text))

@@ -40,6 +40,10 @@ def test():
     result = scraper.get_google_result()
     pprint(result)
 
+def GoogleSearch(Keyword):
+    scraper = Scraper('https://www.google.com/search?q=' + Keyword)
+    result = scraper.get_google_result()
+    pprint(result)
 
 # This bit won't run when we import this file from another file
 if __name__ == "__main__":
