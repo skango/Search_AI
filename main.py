@@ -6,6 +6,12 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from nltk.tokenize import word_tokenize
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import classification_report
+#from gensim import corpora
+#from gensim import models
 
 # def testfunction():
 #     print("This is a test!")
@@ -120,5 +126,25 @@ Text = input("Enter Text: ")
 print(CountWords(process_text(Text)))
 print(process_text(Text))
 AnalyzeWhatIsWhat2(getWordArrayWithDots(Text))
+
+print("===========================================")
+print("===========================================")
+print("===========================================")
+print("===========================================")
+print("===========================================")
+matrix = CountVectorizer(max_features=1000)
+vectors = matrix.fit_transform(getWordArray(Text)).toarray()
+vectors_train, vectors_test, topics_train, topics_test = train_test_split(vectors, getWordArray(Text))
+classifier = GaussianNB()
+classifier.fit(vectors_train, topics_train)
+
+# Predict with the testing set
+topics_pred = classifier.predict(vectors_test)
+
+# ...and measure the accuracy of the results
+
+print(classification_report(topics_test, topics_pred))
+
+
 #print(ReverseQuestion(getWordArrayWithDots(Text)))
 #Get most important topics: https://www.toptal.com/python/topic-modeling-python
