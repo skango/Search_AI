@@ -123,6 +123,11 @@ def AnalyzeWhatIsWhat2(x):
 
 
 Text = input("Enter Text: ")
+
+if (len(Text) < 500):
+    print("You must enter at least 500 Characters! You entered: ", len(Text), "/", " 500")
+    exit(-1)
+
 print(CountWords(process_text(Text)))
 print(process_text(Text))
 AnalyzeWhatIsWhat2(getWordArrayWithDots(Text))
