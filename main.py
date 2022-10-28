@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import nltk
+import tkinter
+from tkinter import simpledialog
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from nltk.tokenize import word_tokenize
@@ -119,13 +121,15 @@ def AnalyzeWhatIsWhat2(x):
             sentence.append(x[i])
 
 
-
-
-
-Text = input("Enter Text: ")
-
+#Text = input("Enter Text: ")
+ROOT = tkinter.Tk()
+ROOT.withdraw()
+# the input dialog
+Text = simpledialog.askstring(title="Test",
+                                  prompt="Enter Text:")
+#print(" Text is ", Text)
 if (len(Text) < 500):
-    print("You must enter at least 500 Characters! You entered: ", len(Text), "/", " 500")
+    print("\nYou must enter at least 500 Characters! You entered: ", len(Text), "/", " 500")
     exit(-1)
 
 print(CountWords(process_text(Text)))
@@ -137,18 +141,18 @@ print("===========================================")
 print("===========================================")
 print("===========================================")
 print("===========================================")
-matrix = CountVectorizer(max_features=1000)
-vectors = matrix.fit_transform(getWordArray(Text)).toarray()
-vectors_train, vectors_test, topics_train, topics_test = train_test_split(vectors, getWordArray(Text))
-classifier = GaussianNB()
-classifier.fit(vectors_train, topics_train)
-
-# Predict with the testing set
-topics_pred = classifier.predict(vectors_test)
-
-# ...and measure the accuracy of the results
-
-print(classification_report(topics_test, topics_pred))
+# matrix = CountVectorizer(max_features=1000)
+# vectors = matrix.fit_transform(process_text(Text)).toarray()
+# vectors_train, vectors_test, topics_train, topics_test = train_test_split(vectors, getWordArray(Text))
+# classifier = GaussianNB()
+# classifier.fit(vectors_train, topics_train)
+#
+#
+# topics_pred = classifier.predict(vectors_test)
+#
+#
+#
+# #(classification_report(topics_test, topics_pred))
 
 
 #print(ReverseQuestion(getWordArrayWithDots(Text)))
